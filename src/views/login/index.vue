@@ -7,16 +7,19 @@
 
       <el-form-item prop="username">
         <span class="svg-container">
-          <svg-icon icon="https://res.lgdsunday.club/user.svg"></svg-icon>
+          <svg-icon icon="user" />
         </span>
         <el-input placeholder="username" name="username" type="text" />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <svg-icon icon="https://res.lgdsunday.club/user.svg"></svg-icon>
+          <svg-icon icon="password" />
         </span>
         <el-input placeholder="password" name="password" />
+        <span class="svg-container">
+          <svg-icon icon="eye" />
+        </span>
       </el-form-item>
 
       <el-button type="primary" style="width: 100%; margin-bottom: 30px"
@@ -26,9 +29,7 @@
   </div>
 </template>
 
-<script setup>
-import SvgIcon from '@/components/SvgIcon/index.vue'
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 $bg: #2d3a4b;

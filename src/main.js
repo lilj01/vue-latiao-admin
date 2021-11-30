@@ -5,10 +5,15 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import installElementPlus from './plugins/element'
+
 import '@/styles/index.scss'
 
-createApp(App)
-  .use(store)
+// 导入 svgIcon
+import installIcons from '@/icons/index.js'
+
+const app = createApp(App)
+installIcons(app)
+installElementPlus(app)
+app.use(store)
   .use(router)
-  .use(installElementPlus)
   .mount('#app')
