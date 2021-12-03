@@ -45,6 +45,7 @@
 <script setup>
 import { ref } from 'vue'
 import { validatePassword } from './rules'
+import { Sys } from '@/model/sys.js'
 
 /* 表单登录参数 */
 const loginForm = ref({
@@ -74,7 +75,10 @@ const loginRules = ref({
 const passwordShowType = ref('password')
 
 /* passwordShowType 值切换 password text */
-const changePasswordShowType = () => {
+const changePasswordShowType = async () => {
+  const sys = new Sys()
+  const { data } = await sys.login(loginForm.value)
+  console.log(data)
   if (passwordShowType.value === 'password') {
     passwordShowType.value = 'text'
   } else {
