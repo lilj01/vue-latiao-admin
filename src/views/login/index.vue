@@ -1,6 +1,11 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" :model="loginForm" :rules="loginRules">
+    <el-form
+      class="login-form"
+      ref="loginFromRel"
+      :model="loginForm"
+      :rules="loginRules"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -35,7 +40,11 @@
         </span>
       </el-form-item>
 
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px"
+      <el-button
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        :loading="loading"
+        @click="handleLogin"
         >登录</el-button
       >
     </el-form>
@@ -45,8 +54,13 @@
 <script setup>
 import { ref } from 'vue'
 import { validatePassword } from './rules'
-import { Sys } from '@/model/sys.js'
+import { sys } from '@/model/sys'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { Storage } from '@/utils/storage'
 
+const store = useStore()
+const router = useRouter()
 /* 表单登录参数 */
 const loginForm = ref({
   username: 'super-admin',
@@ -76,14 +90,28 @@ const passwordShowType = ref('password')
 
 /* passwordShowType 值切换 password text */
 const changePasswordShowType = async () => {
-  const sys = new Sys()
-  const { data } = await sys.login(loginForm.value)
-  console.log(data)
   if (passwordShowType.value === 'password') {
     passwordShowType.value = 'text'
   } else {
     passwordShowType.value = 'password'
   }
+}
+
+const loginFromRel = ref(null)
+/* 防止重复提交 */
+const loading = ref(false)
+
+/* 点击登录 */
+const handleLogin = async () => {
+  loginFromRel.value.validate(async (valid) => {
+    if (!valid) return
+    loading.value = true
+    const { token } = await sys.login(loginForm.value)
+    store.dispatch('user/login', token)
+    // router.push('/')
+    console.log('token获取： ' + Storage.getItem('token'))
+    loading.value = false
+  })
 }
 </script>
 

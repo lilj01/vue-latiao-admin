@@ -19,7 +19,8 @@ class Sys {
     })
   }
 }
-
+const sys = new Sys()
 export {
+  sys,
   Sys
 }
