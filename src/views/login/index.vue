@@ -103,6 +103,7 @@ const loading = ref(false)
 
 /* 点击登录 */
 const handleLogin = async () => {
+  /* 表单验证不通过时，不在后端提交 */
   loginFromRel.value.validate(async (valid) => {
     if (!valid) return
     loading.value = true
