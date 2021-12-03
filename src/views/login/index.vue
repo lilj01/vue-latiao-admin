@@ -24,10 +24,14 @@
         <el-input
           placeholder="password"
           name="password"
+          :type="passwordShowType"
           v-model="loginForm.password"
         />
         <span class="svg-container">
-          <svg-icon icon="eye" />
+          <svg-icon
+            :icon="passwordShowType === 'password' ? 'eye' : 'eye-open'"
+            @click="changePasswordShowType"
+          />
         </span>
       </el-form-item>
 
@@ -41,11 +45,14 @@
 <script setup>
 import { ref } from 'vue'
 import { validatePassword } from './rules'
+
+/* 表单登录参数 */
 const loginForm = ref({
   username: 'super-admin',
   password: '123456'
 })
 
+/* 登录表单校验规则 */
 const loginRules = ref({
   username: [
     {
@@ -62,6 +69,15 @@ const loginRules = ref({
     }
   ]
 })
+
+const passwordShowType = ref('password')
+const changePasswordShowType = () => {
+  if (passwordShowType.value === 'password') {
+    passwordShowType.value = 'text'
+  } else {
+    passwordShowType.value = 'password'
+  }
+}
 </script>
 
 <style lang="scss" scoped>
