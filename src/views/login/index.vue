@@ -70,7 +70,10 @@ const loginRules = ref({
   ]
 })
 
+/* 密码输入框后的眼睛是否打开，密码是否明文 */
 const passwordShowType = ref('password')
+
+/* passwordShowType 值切换 password text */
 const changePasswordShowType = () => {
   if (passwordShowType.value === 'password') {
     passwordShowType.value = 'text'
