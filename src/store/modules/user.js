@@ -1,6 +1,6 @@
 import {
   sys
-} from '@/model/sys'
+} from '@/models/sys'
 import {
   Storage as Cache
 } from '@/utils/storage'
