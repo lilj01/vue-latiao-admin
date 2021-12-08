@@ -5,17 +5,17 @@ import {
   Storage as Cache
 } from '@/utils/storage'
 import {
-  TOKEN
+  SysConst
 } from '@/constant/index'
 export default {
   namespaced: true,
   state: () => ({
-    token: Cache.getItem(TOKEN) || ''
+    token: Cache.getItem(SysConst.TOKEN) || ''
   }),
   mutations: {
     setToken(state, token) {
       state.token = token
-      Cache.setItem(TOKEN, token)
+      Cache.setItem(SysConst.TOKEN, token)
     }
   },
   actions: {
