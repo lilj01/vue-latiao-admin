@@ -1,6 +1,6 @@
-// import {
-//   login
-// } from '@/api/sys'
+import {
+  sys
+} from '@/model/sys'
 import {
   Storage as Cache
 } from '@/utils/storage'
@@ -19,8 +19,17 @@ export default {
     }
   },
   actions: {
-    login(context, token) {
-      this.commit('user/setToken', token)
+    login(context, userInfo) {
+      return new Promise((resolve, reject) => {
+        sys.login(userInfo)
+          .then(data => {
+            this.commit('user/setToken', data.token)
+            resolve()
+          })
+          .catch(err => {
+            reject(err)
+          })
+      })
     }
   }
 }

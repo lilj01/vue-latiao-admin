@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-form
       class="login-form"
-      ref="loginFromRel"
+      ref="loginFormRel"
       :model="loginForm"
       :rules="loginRules"
     >
@@ -54,10 +54,8 @@
 <script setup>
 import { ref } from 'vue'
 import { validatePassword } from './rules'
-import { sys } from '@/model/sys'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import { Storage } from '@/utils/storage'
 
 const store = useStore()
 const router = useRouter()
@@ -97,21 +95,27 @@ const changePasswordShowType = async () => {
   }
 }
 
-const loginFromRel = ref(null)
+const loginFormRel = ref(null)
 /* 防止重复提交 */
 const loading = ref(false)
 
 /* 点击登录 */
-const handleLogin = async () => {
-  /* 表单验证不通过时，不在后端提交 */
-  loginFromRel.value.validate(async (valid) => {
+const handleLogin = () => {
+  loginFormRel.value.validate((valid) => {
     if (!valid) return
+
     loading.value = true
-    const { token } = await sys.login(loginForm.value)
-    store.dispatch('user/login', token)
-    // router.push('/')
-    console.log('token获取： ' + Storage.getItem('token'))
-    loading.value = false
+    store
+      .dispatch('user/login', loginForm.value)
+      .then(() => {
+        loading.value = false
+        // 登录后操作
+        router.push('/')
+      })
+      .catch((err) => {
+        console.log(err)
+        loading.value = false
+      })
   })
 }
 </script>
