@@ -1,6 +1,9 @@
 import {
   http
 } from '@/utils/http.js'
+import {
+  SvcConst
+} from '@/constant/svc-const'
 import md5 from 'md5'
 
 class Sys {
@@ -10,7 +13,7 @@ class Sys {
       username
     } = data
     return http.request({
-      url: '/sys/login',
+      url: SvcConst.SYS_LOGIN,
       method: 'post',
       data: {
         username,
@@ -21,7 +24,7 @@ class Sys {
 
   getUserInfo() {
     return http.request({
-      url: '/sys/profile'
+      url: SvcConst.SYS_PROFILE
     })
   }
 }

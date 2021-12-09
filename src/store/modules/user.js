@@ -6,7 +6,7 @@ import {
 } from '@/utils/storage'
 import {
   SysConst
-} from '@/constant/index'
+} from '@/constant/sys-const'
 export default {
   namespaced: true,
   state: () => ({
@@ -37,6 +37,7 @@ export default {
     },
     async getUserInfo(context) {
       const userInfo = await sys.getUserInfo()
+      console.log(userInfo)
       this.commit('user/setUserInfo', userInfo)
       return userInfo
     }

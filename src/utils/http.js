@@ -37,26 +37,27 @@ class Http {
           message,
           data
         } = response.data
-        //   要根据success的成功与否决定下面的操作
+        /* 要根据success的成功与否决定下面的操作 */
         if (success) {
           return data
         } else {
-          // 业务错误
+          /* 业务错误 */
           ElMessage.error(message) // 提示错误消息
           return Promise.reject(new Error(message))
         }
       },
       error => {
-        // 处理 token 超时问题
+        /* 处理 token 超时问题 */
         if (
           error.response &&
           error.response.data &&
           error.response.data.code === 401
         ) {
-          // token超时
+          /* token超时 */
           // store.dispatch('user/logout')
         }
-        ElMessage.error(error.message) // 提示错误信息
+        /* 提示错误信息 */
+        ElMessage.error(error.message)
         return Promise.reject(error)
       }
     )
