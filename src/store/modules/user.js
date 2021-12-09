@@ -2,7 +2,7 @@ import {
   sys
 } from '@/models/sys'
 import {
-  Storage as Cache
+  Storage
 } from '@/utils/storage'
 import {
   SysConst
@@ -10,12 +10,16 @@ import {
 export default {
   namespaced: true,
   state: () => ({
-    token: Cache.getItem(SysConst.TOKEN) || ''
+    token: Storage.getItem(SysConst.TOKEN) || '',
+    userInfo: {}
   }),
   mutations: {
     setToken(state, token) {
       state.token = token
-      Cache.setItem(SysConst.TOKEN, token)
+      Storage.setItem(SysConst.TOKEN, token)
+    },
+    setUserInfo(state, userInfo) {
+      state.userInfo = userInfo
     }
   },
   actions: {
@@ -30,6 +34,11 @@ export default {
             reject(err)
           })
       })
+    },
+    async getUserInfo(context) {
+      const userInfo = await sys.getUserInfo()
+      this.commit('user/setUserInfo', userInfo)
+      return userInfo
     }
   }
 }

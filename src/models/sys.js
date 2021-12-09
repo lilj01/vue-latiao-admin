@@ -18,6 +18,12 @@ class Sys {
       }
     })
   }
+
+  getUserInfo() {
+    return http.request({
+      url: '/sys/profile'
+    })
+  }
 }
 const sys = new Sys()
 export {

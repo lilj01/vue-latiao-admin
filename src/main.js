@@ -10,6 +10,8 @@ import '@/styles/index.scss'
 
 // 导入 svgIcon
 import installIcons from '@/icons/index.js'
+// 导入权限控制模块
+import './permission'
 
 const app = createApp(App)
 installIcons(app)
