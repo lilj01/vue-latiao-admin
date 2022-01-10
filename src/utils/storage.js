@@ -32,7 +32,7 @@ class Storage {
   /**
    * 删除所有数据
    */
-  static removeAllItem = key => {
+  static removeAllItem = () => {
     window.localStorage.clear()
   }
 }

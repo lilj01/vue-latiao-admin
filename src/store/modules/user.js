@@ -7,6 +7,7 @@ import {
 import {
   SysConst
 } from '@/constant/sys-const'
+import router from '@/router'
 export default {
   namespaced: true,
   state: () => ({
@@ -40,6 +41,13 @@ export default {
       console.log(userInfo)
       this.commit('user/setUserInfo', userInfo)
       return userInfo
+    },
+    logout() {
+      this.commit('user/setToken', '')
+      this.commit('user/setUserInfo', {})
+      Storage.removeAllItem()
+      // todo:清理权限相关配置
+      router.push('/login')
     }
   }
 }
