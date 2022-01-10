@@ -62,7 +62,7 @@ class Http {
           error.response.data.code === 401
         ) {
           /* token超时 */
-          // store.dispatch('user/logout')
+          store.dispatch('user/logout')
         }
         /* 提示错误信息 */
         ElMessage.error(error.message)
