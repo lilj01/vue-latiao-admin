@@ -8,6 +8,10 @@ import {
   SysConst
 } from '@/constant/sys-const'
 import router from '@/router'
+import {
+  setTimeStamp
+} from '@/utils/auth'
+
 export default {
   namespaced: true,
   state: () => ({
@@ -29,6 +33,7 @@ export default {
         sys.login(userInfo)
           .then(data => {
             this.commit('user/setToken', data.token)
+            setTimeStamp()
             resolve()
           })
           .catch(err => {
