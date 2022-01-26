@@ -11,7 +11,6 @@ router.beforeEach(async (to, from, next) => {
   // if (store.state.user.token) {
   // 快捷访问
   const token = store.getters.token
-  console.log('token: ' + token)
   if (token) {
     if (to.path === '/login') {
       next('/')
