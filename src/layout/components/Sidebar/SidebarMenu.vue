@@ -2,7 +2,7 @@
   <el-menu
     :collapse="!$store.getters.sidebarOpened"
     :uniqueOpened="true"
-    background-color="#545c64"
+    background-color="#545c66"
     text-color="#fff"
     active-text-color="#ffd04b"
   >
