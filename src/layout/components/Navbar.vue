@@ -17,8 +17,11 @@
             <router-link to="/">
               <el-dropdown-item> 首页 </el-dropdown-item>
             </router-link>
-            <a target="_blank" href="">
-              <el-dropdown-item>课程主页</el-dropdown-item>
+            <a
+              target="_blank"
+              href="https://gitee.com/bclz_xc/vue-latiao-admin"
+            >
+              <el-dropdown-item>gitee</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logout">
               退出登录

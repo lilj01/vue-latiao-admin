@@ -43,6 +43,7 @@ export default {
     },
     async getUserInfo(context) {
       const userInfo = await sys.getUserInfo()
+      userInfo.avatar = 'https://bclz_xc.gitee.io/lilj_01-static/lilj/tx.jpg?imageView2/1/w/80/h/80'
       this.commit('user/setUserInfo', userInfo)
       return userInfo
     },
