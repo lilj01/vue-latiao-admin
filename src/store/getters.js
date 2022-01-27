@@ -6,6 +6,7 @@ const getters = {
     return JSON.stringify(state.user.userInfo) !== '{}'
   },
   sidebarOpened: state => state.app.sidebarOpened,
-  cssVar: state => variables
+  cssVar: state => variables,
+  language: state => state.app.language
 }
 export default getters
