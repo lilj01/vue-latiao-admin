@@ -7,7 +7,8 @@
       :rules="loginRules"
     >
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <lang-select class="lang-select" effect="light"></lang-select>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
       </div>
 
       <el-form-item prop="username">
@@ -45,8 +46,9 @@
         style="width: 100%; margin-bottom: 30px"
         :loading="loading"
         @click="handleLogin"
-        >登录</el-button
+        >{{ $t('msg.login.loginBtn') }}</el-button
       >
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
@@ -56,7 +58,10 @@ import { ref } from 'vue'
 import { validatePassword } from './rules'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import LangSelect from '@/components/LangSelect/index.vue'
+import { useI18n } from 'vue-i18n'
 
+const i18n = useI18n()
 const store = useStore()
 const router = useRouter()
 /* 表单登录参数 */
@@ -71,7 +76,7 @@ const loginRules = ref({
     {
       required: true,
       trigger: 'blur',
-      message: '用户名不能为空'
+      message: i18n.t('msg.login.usernameRule')
     }
   ],
   password: [

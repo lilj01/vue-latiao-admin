@@ -17,16 +17,16 @@
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
             <router-link to="/">
-              <el-dropdown-item> 首页 </el-dropdown-item>
+              <el-dropdown-item> {{ $t('msg.navBar.home') }} </el-dropdown-item>
             </router-link>
             <a
               target="_blank"
               href="https://gitee.com/bclz_xc/vue-latiao-admin"
             >
-              <el-dropdown-item>gitee</el-dropdown-item>
+              <el-dropdown-item>{{ $t('msg.navBar.os') }}</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logout">
-              退出登录
+              {{ $t('msg.navBar.logout') }}
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
