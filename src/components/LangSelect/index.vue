@@ -45,7 +45,6 @@ const language = computed(() => store.getters.language)
 // 切换语言的方法
 const i18n = useI18n()
 const handleSetLanguage = (lang) => {
-  console.log(lang)
   i18n.locale.value = lang
   store.commit('app/setLanguage', lang)
   ElMessage.success('更新成功')
