@@ -31,7 +31,7 @@ class Http {
           // 如果token存在 注入token
           config.headers.Authorization = `Bearer ${store.getters.token}`
         }
-        config.headers.icode = '65F4C929F379C5A5'
+        config.headers.icode = '0CF589EAE215CEF6'
         return config // 必须返回配置
       },
       error => {
