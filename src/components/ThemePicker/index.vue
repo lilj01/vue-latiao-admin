@@ -20,12 +20,22 @@
       </el-dropdown-menu>
     </template>
   </el-dropdown>
+
+  <!-- 弹出层 -->
+  <div>
+    <select-color v-model="selectColorVisible"></select-color>
+  </div>
 </template>
 
 <script setup>
-import {} from 'vue'
+import { ref } from 'vue'
+import SelectColor from './components/index.vue'
 
-const handleSetTheme = (command) => {}
+const handleSetTheme = (command) => {
+  selectColorVisible.value = true
+}
+
+const selectColorVisible = ref(false)
 </script>
 
 <style lang="scss" scoped></style>
